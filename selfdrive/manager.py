@@ -73,7 +73,7 @@ from selfdrive.swaglog import cloudlog
 import selfdrive.messaging as messaging
 #from selfdrive.registration import register
 #from selfdrive.version import version, dirty
-import selfdrive.crash as crash
+#import selfdrive.crash as crash
 
 from selfdrive.loggerd.config import ROOT
 
@@ -173,7 +173,7 @@ def launcher(proc):
   except Exception:
     # can't install the crash handler becuase sys.excepthook doesn't play nice
     # with threads, so catch it here.
-    crash.capture_exception()
+    #crash.capture_exception()
     raise
 
 def nativelauncher(pargs, cwd):
@@ -300,8 +300,8 @@ def manager_init(should_register=False):
     os.environ['CLEAN'] = '1'
 
   cloudlog.bind_global(dongle_id=dongle_id, version=version, dirty=dirty, is_eon=True)
-  crash.bind_user(id=dongle_id)
-  crash.bind_extra(version=version, dirty=dirty, is_eon=True)
+  #crash.bind_user(id=dongle_id)
+  #crash.bind_extra(version=version, dirty=dirty, is_eon=True)
 
   os.umask(0)
   try:
@@ -588,7 +588,7 @@ def main():
     manager_thread()
   except Exception:
     traceback.print_exc()
-    crash.capture_exception()
+    #crash.capture_exception()
   finally:
     cleanup_all_processes(None, None)
 
