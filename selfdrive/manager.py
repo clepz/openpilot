@@ -22,20 +22,6 @@ def unblock_stdout():
     fcntl.fcntl(sys.stdout, fcntl.F_SETFL,
        fcntl.fcntl(sys.stdout, fcntl.F_GETFL) | os.O_NONBLOCK)
 
-    while True:
-      try:
-        dat = os.read(child_pty, 4096)
-      except OSError as e:
-        if e.errno == errno.EIO:
-          break
-        continue
-
-      if not dat:
-        break
-
-    
-
-    os._exit(os.wait()[1])
 
 if __name__ == "__main__":
   is_neos = os.path.isfile("/init.qcom.rc")
