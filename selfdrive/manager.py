@@ -577,7 +577,7 @@ def main():
       cwd=os.path.join(BASEDIR, "selfdrive", "ui", "spinner"),
       close_fds=True)
   try:
-    manager_update()
+    #manager_update()
     manager_init()
     manager_prepare()
   finally:
