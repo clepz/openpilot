@@ -91,7 +91,7 @@ managed_processes = {
   #"tombstoned": "selfdrive.tombstoned",
   "logcatd": ("selfdrive/logcatd", ["./logcatd"]),
   "proclogd": ("selfdrive/proclogd", ["./proclogd"]),
-  "boardd": ("selfdrive/boardd", ["./boardd"]),   # not used directly
+  #"boardd": ("selfdrive/boardd", ["./boardd"]),   # not used directly
   "pandad": "selfdrive.pandad",
   "ui": ("selfdrive/ui", ["./start.py"]),
   "calibrationd": "selfdrive.locationd.calibrationd",
