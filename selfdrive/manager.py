@@ -46,9 +46,9 @@ if __name__ == "__main__":
 
   if is_neos:
     version = int(open("/VERSION").read()) if os.path.isfile("/VERSION") else 0
-    revision = int(open("/REVISION").read()) if version >= 10 else 0 # Revision only present in NEOS 10 and up
-    neos_update_required = version < 10 or (version == 10 and revision < 4)
-
+    #revision = int(open("/REVISION").read()) if version >= 10 else 0 # Revision only present in NEOS 10 and up
+    #neos_update_required = version < 10 or (version == 10 and revision < 4)
+  neos_update_required = False
   if neos_update_required:
     # update continue.sh before updating NEOS
     if os.path.isfile(os.path.join(BASEDIR, "scripts", "continue.sh")):
@@ -97,7 +97,7 @@ from selfdrive.loggerd.config import ROOT
 # comment out anything you don't want to run
 managed_processes = {
   "thermald": "selfdrive.thermald",
-  "uploader": "selfdrive.loggerd.uploader",
+  #"uploader": "selfdrive.loggerd.uploader",
   "deleter": "selfdrive.loggerd.deleter",
   "controlsd": "selfdrive.controls.controlsd",
   "plannerd": "selfdrive.controls.plannerd",
@@ -116,7 +116,7 @@ managed_processes = {
   "visiond": ("selfdrive/visiond", ["./visiond"]),
   "sensord": ("selfdrive/sensord", ["./start_sensord.py"]),
   "gpsd": ("selfdrive/sensord", ["./start_gpsd.py"]),
-  "updated": "selfdrive.updated",
+  #"updated": "selfdrive.updated",
 }
 daemon_processes = {
   "athenad": "selfdrive.athena.athenad",
@@ -304,7 +304,7 @@ def cleanup_all_processes(signal, frame):
 
 # ****************** run loop ******************
 
-def manager_init(should_register=True):
+def manager_init(should_register=False):
   if should_register:
     reg_res = register()
     if reg_res:
