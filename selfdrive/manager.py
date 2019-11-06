@@ -88,7 +88,7 @@ managed_processes = {
   "ubloxd": ("selfdrive/locationd", ["./ubloxd"]),
   "loggerd": ("selfdrive/loggerd", ["./loggerd"]),
   "logmessaged": "selfdrive.logmessaged",
-  "tombstoned": "selfdrive.tombstoned",
+  #"tombstoned": "selfdrive.tombstoned",
   "logcatd": ("selfdrive/logcatd", ["./logcatd"]),
   "proclogd": ("selfdrive/proclogd", ["./proclogd"]),
   "boardd": ("selfdrive/boardd", ["./boardd"]),   # not used directly
@@ -102,7 +102,7 @@ managed_processes = {
   #"updated": "selfdrive.updated",
 }
 daemon_processes = {
-  "athenad": "selfdrive.athena.athenad",
+  #"athenad": "selfdrive.athena.athenad",
 }
 android_packages = ("ai.comma.plus.offroad", "ai.comma.plus.frame")
 
