@@ -34,7 +34,7 @@ def unblock_stdout():
         break
 
       try:
-        sys.stdout.write(dat)
+        #sys.stdout.write(dat)
       except (OSError, IOError):
         pass
 
