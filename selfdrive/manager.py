@@ -71,8 +71,8 @@ ThermalStatus = cereal.log.ThermalData.ThermalStatus
 from selfdrive.services import service_list
 from selfdrive.swaglog import cloudlog
 import selfdrive.messaging as messaging
-from selfdrive.registration import register
-from selfdrive.version import version, dirty
+#from selfdrive.registration import register
+#from selfdrive.version import version, dirty
 import selfdrive.crash as crash
 
 from selfdrive.loggerd.config import ROOT
@@ -288,14 +288,8 @@ def cleanup_all_processes(signal, frame):
 # ****************** run loop ******************
 
 def manager_init(should_register=False):
-  if should_register:
-    reg_res = register()
-    if reg_res:
-      dongle_id, dongle_secret = reg_res
-    else:
-      raise Exception("server registration failed")
-  else:
-    dongle_id = "c"*16
+
+  dongle_id = "c"*16
 
   # set dongle id
   cloudlog.info("dongle id is " + dongle_id)
@@ -578,7 +572,7 @@ def main():
       close_fds=True)
   try:
     #manager_update()
-    manager_init()
+    #manager_init()
     manager_prepare()
   finally:
     if spinner_proc:
