@@ -2,7 +2,7 @@ import jwt
 import requests
 from datetime import datetime, timedelta
 
-from selfdrive.version import version
+#from selfdrive.version import version
 
 class Api(object):
   def __init__(self, dongle_id):
@@ -36,7 +36,7 @@ def api_get(endpoint, method='GET', timeout=None, access_token=None, **params):
   if access_token is not None:
     headers['Authorization'] = "JWT "+access_token
 
-  headers['User-Agent'] = "openpilot-" + version
+  headers['User-Agent'] = "openpilot-"
 
   return requests.request(method, backend+endpoint, timeout=timeout, headers = headers, params=params)
 
