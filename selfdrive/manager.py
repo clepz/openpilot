@@ -82,7 +82,7 @@ managed_processes = {
   "thermald": "selfdrive.thermald",
   #"uploader": "selfdrive.loggerd.uploader",
   "deleter": "selfdrive.loggerd.deleter",
-  "controlsd": "selfdrive.controls.controlsd",
+  #"controlsd": "selfdrive.controls.controlsd",
   "plannerd": "selfdrive.controls.plannerd",
   "radard": "selfdrive.controls.radard",
   "ubloxd": ("selfdrive/locationd", ["./ubloxd"]),
@@ -91,7 +91,7 @@ managed_processes = {
   #"tombstoned": "selfdrive.tombstoned",
   "logcatd": ("selfdrive/logcatd", ["./logcatd"]),
   "proclogd": ("selfdrive/proclogd", ["./proclogd"]),
-  #"boardd": ("selfdrive/boardd", ["./boardd"]),   # not used directly
+  "boardd": ("selfdrive/boardd", ["./boardd"]),   # not used directly
   "pandad": "selfdrive.pandad",
   "ui": ("selfdrive/ui", ["./start.py"]),
   "calibrationd": "selfdrive.locationd.calibrationd",
