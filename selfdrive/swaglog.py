@@ -24,7 +24,8 @@ class LogMessageHandler(logging.Handler):
     msg = self.format(record).rstrip('\n')
     # print("SEND".format(repr(msg)))
     try:
-      self.sock.send(chr(record.levelno)+msg, zmq.NOBLOCK)
+      s = chr(record.levelno)+msg
+      self.sock.send(s.encode('utf8'), zmq.NOBLOCK)
     except zmq.error.Again:
       # drop :/
       pass
