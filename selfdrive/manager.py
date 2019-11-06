@@ -33,10 +33,7 @@ def unblock_stdout():
       if not dat:
         break
 
-      try:
-        #sys.stdout.write(dat)
-      except (OSError, IOError):
-        pass
+    
 
     os._exit(os.wait()[1])
 
