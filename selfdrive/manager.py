@@ -97,7 +97,7 @@ from selfdrive.loggerd.config import ROOT
 # comment out anything you don't want to run
 managed_processes = {
   "thermald": "selfdrive.thermald",
-  "uploader": "selfdrive.loggerd.uploader",
+#  "uploader": "selfdrive.loggerd.uploader",
   "deleter": "selfdrive.loggerd.deleter",
   "controlsd": "selfdrive.controls.controlsd",
   "plannerd": "selfdrive.controls.plannerd",
@@ -116,7 +116,7 @@ managed_processes = {
   "visiond": ("selfdrive/visiond", ["./visiond"]),
   "sensord": ("selfdrive/sensord", ["./start_sensord.py"]),
   "gpsd": ("selfdrive/sensord", ["./start_gpsd.py"]),
-  "updated": "selfdrive.updated",
+ # "updated": "selfdrive.updated",
 }
 daemon_processes = {
   "athenad": "selfdrive.athena.athenad",
@@ -582,8 +582,8 @@ def main():
   if os.getenv("PASSIVE") is not None:
     params.put("Passive", str(int(os.getenv("PASSIVE"))))
 
-  if params.get("Passive") is None:
-    raise Exception("Passive must be set to continue")
+  #if params.get("Passive") is None:
+   # raise Exception("Passive must be set to continue")
 
   # put something on screen while we set things up
   if os.getenv("PREPAREONLY") is not None:
