@@ -1009,6 +1009,7 @@ void* processing_thread(void *arg) {
       mat3 model_transform = matmul3(s->yuv_transform, transform);
 
       mt1 = millis_since_boot();
+      printf("*******model_eval_frame inputs: yuvwidth: %d, yuvheight: %d\n",s->yuv_width,s->yuv_height);
       s->model_bufs[ui_idx] =
           model_eval_frame(&s->model, q, yuv_cl, s->yuv_width, s->yuv_height,
                            model_transform, img_sock_raw, NULL);
@@ -1280,6 +1281,7 @@ void* live_thread(void *arg) {
 
       for (int i=0; i<3*3; i++) {
         s->cur_transform.v[i] = warp_matrix(i / 3, i % 3);
+        printf("******* wrap matris %d : %f\n",i,warp_matrix(i / 3, i % 3));
       }
 
       s->run_model = true;

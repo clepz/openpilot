@@ -76,6 +76,7 @@ class Calibrator(object):
         cal_params = {"vanishing_point": list(self.vp),
                       "valid_points": len(self.vps)}
         self.params.put("CalibrationParams", json.dumps(cal_params))
+      print (self.vps)
       return new_vp
     else:
       return None
@@ -90,6 +91,7 @@ class Calibrator(object):
     cal_send.liveCalibration.calPerc = min(len(self.vps) * 100 // INPUTS_NEEDED, 100)
     cal_send.liveCalibration.extrinsicMatrix = [float(x) for x in extrinsic_matrix.flatten()]
     cal_send.liveCalibration.rpyCalib = [float(x) for x in calib]
+    print (cal_send.liveCalibration.extrinsicMatrix)
 
     pm.send('liveCalibration', cal_send)
 
@@ -108,8 +110,8 @@ def calibrationd_thread(sm=None, pm=None):
     sm.update()
 
     new_vp = calibrator.handle_cam_odom(sm['cameraOdometry'])
-    if DEBUG and new_vp is not None:
-      print 'got new vp', new_vp
+    if True and new_vp is not None:
+      print '*******got new vp', new_vp
 
     calibrator.send_data(pm)
 

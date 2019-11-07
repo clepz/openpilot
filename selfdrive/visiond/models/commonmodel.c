@@ -43,6 +43,7 @@ float *model_input_prepare(ModelInput* s, cl_command_queue q,
                   s->transformed_y_cl, s->transformed_u_cl, s->transformed_v_cl,
                   s->transformed_width, s->transformed_height,
                   transform);
+  printf("******* transformed_width: %d, transformed_height: %d\n",s->transformed_width,s->transformed_height);
   loadyuv_queue(&s->loadyuv, q,
                 s->transformed_y_cl, s->transformed_u_cl, s->transformed_v_cl,
                 s->net_input);
