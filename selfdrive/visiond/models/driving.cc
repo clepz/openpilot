@@ -92,10 +92,6 @@ ModelData model_eval_frame(ModelState* s, cl_command_queue q,
   //printf("%i \n",OUTPUT_SIZE);
   //printf("%i \n",MDN_GROUP_SIZE);
   printf("*******Driving model nn executing****************************\n");
-  for(int i = 0 ; i< MODEL_HEIGHT*MODEL_WIDTH*3/2 ; i++){
-    printf("%f-",net_input_buf[i]);
-  }
-  printf("\n*******Driving model nn executing****************************\n");
   s->m->execute(net_input_buf);
 
   // net outputs
