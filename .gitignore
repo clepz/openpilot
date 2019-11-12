@@ -6,6 +6,7 @@ venv/
 .sconsign.dblite
 model2.png
 a.out
+.vscode
 
 *.DSYM
 *.d
