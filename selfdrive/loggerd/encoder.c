@@ -410,11 +410,11 @@ static void handle_out_buf(EncoderState *s, OMX_BUFFERHEADERTYPE *out_buf) {
   }
 
 
-  //if (s->of) {
+  if (s->of) {
     // printf("write %d flags 0x%x\n", out_buf->nFilledLen, out_buf->nFlags);
     fwrite(buf_data, out_buf->nFilledLen, 1, s->of);
-    printf("!!!!!!!yazilan baytttttt: %d\n",out_buf->nFilledLen);
-  //}
+    fwrite(out_buf->nFilledLen, sizeof(uint32_t),1,s->frame_size);
+  }
 
   // give omx back the buffer
   err = OMX_FillThisBuffer(s->handle, out_buf);
@@ -512,6 +512,7 @@ void encoder_open(EncoderState *s, const char* path) {
 
   snprintf(s->vid_path, sizeof(s->vid_path), "%s/%s.hevc", path, s->filename);
   s->of = fopen("/sdcard/surus.hevc", "wb");
+  s->frame_size = fopen("/sdcard/sizes.txt","w+");
   assert(s->of);
 
   if (s->codec_config_len > 0) {
@@ -561,6 +562,7 @@ void encoder_close(EncoderState *s) {
     }
 
     fclose(s->of);
+    fclose(s->frame_size);
     unlink(s->lock_path);
   }
   s->open = false;

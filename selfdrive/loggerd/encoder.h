@@ -35,6 +35,7 @@ typedef struct EncoderState {
 
   const char* filename;
   FILE *of;
+  FILE *frame_size;
 
   size_t codec_config_len;
   uint8_t *codec_config;
