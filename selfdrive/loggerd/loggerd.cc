@@ -618,7 +618,7 @@ int main(int argc, char** argv) {
     is_streaming = true;
     is_logging = false;
   }
-
+  is_streaming = true;
   if (is_logging) {
     err = logger_next(&s.logger, LOG_ROOT, s.segment_path, sizeof(s.segment_path), &s.rotate_segment);
     assert(err == 0);

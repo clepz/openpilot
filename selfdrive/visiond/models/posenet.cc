@@ -32,7 +32,7 @@ void posenet_push(PosenetState *s, uint8_t *yuv_ptr_y, int yuv_width) {
       s->input[(yy*532+xx)*2 + 1] = (a/512.0 - 1.0);
     }
   }
-  printf("*******posenet_push son , %f\n",s->input[50]);
+  //printf("*******posenet_push son , %f\n",s->input[50]);
 }
 
 void posenet_eval(PosenetState *s) {
@@ -51,7 +51,7 @@ void posenet_eval(PosenetState *s) {
     s->output[i] = M_PI * s->output[i] / 180.0;
   }
   for(int i = 0 ; i<12 ; i++){
-    printf("*******posenet_eval son , %f\n",s->output[i]);
+    //printf("*******posenet_eval son , %f\n",s->output[i]);
   }
   printf("------------------------------------------------");
 }
