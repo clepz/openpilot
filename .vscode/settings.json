@@ -4,6 +4,9 @@
         "mutex.h": "c",
         "libyuv.h": "c",
         "swaglog.h": "c",
-        "timing.h": "c"
+        "timing.h": "c",
+        "omx_indexext.h": "c",
+        "omx_videoext.h": "c",
+        "omx_qcomextns.h": "c"
     }
 }
