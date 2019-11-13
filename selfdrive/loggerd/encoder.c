@@ -513,7 +513,7 @@ void encoder_open(EncoderState *s, const char* path) {
 
   snprintf(s->vid_path, sizeof(s->vid_path), "%s/%s.hevc", path, s->filename);
   s->of = fopen("/sdcard/surus.hevc", "wb");
-  s->frame_size = fopen("/sdcard/sizes.txt","w+");
+  s->frame_size = fopen("/sdcard/sizes.txt","wb");
   assert(s->of);
 
   if (s->codec_config_len > 0) {
