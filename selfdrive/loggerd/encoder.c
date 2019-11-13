@@ -444,7 +444,7 @@ int encoder_encode_frame(EncoderState *s, uint64_t ts,
   OMX_BUFFERHEADERTYPE* in_buf = queue_pop(&s->free_in);
   pthread_mutex_lock(&s->lock);
   //TODO: alttaki satir debugdan sonra silinmeli
-  s->rotating = false;
+  //s->rotating = false;
   if (s->rotating) {
     encoder_close(s);
     encoder_open(s, s->next_path);
