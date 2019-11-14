@@ -633,7 +633,7 @@ int main(int argc, char** argv) {
   std::thread encoder_thread_handle(encoder_thread, is_streaming, false, false);
 
   // front camera
-  std::thread front_encoder_thread_handle(encoder_thread, false, false, true);
+  std::thread front_encoder_thread_handle(encoder_thread, false, false, false);
 #endif
 
 #if ENABLE_LIDAR
