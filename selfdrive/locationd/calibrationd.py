@@ -90,7 +90,7 @@ class Calibrator(object):
     cal_send.liveCalibration.calPerc = min(len(self.vps) * 100 // INPUTS_NEEDED, 100)
     cal_send.liveCalibration.extrinsicMatrix = [float(x) for x in extrinsic_matrix.flatten()]
     cal_send.liveCalibration.rpyCalib = [float(x) for x in calib]
-    print (cal_send.liveCalibration.extrinsicMatrix)
+    #print (cal_send.liveCalibration.extrinsicMatrix)
 
     pm.send('liveCalibration', cal_send)
 
