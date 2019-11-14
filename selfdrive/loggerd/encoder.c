@@ -409,11 +409,10 @@ static void handle_out_buf(EncoderState *s, OMX_BUFFERHEADERTYPE *out_buf) {
     zmq_send(s->stream_sock_raw, buf_data, out_buf->nFilledLen, 0);
   }
 
-
   if (s->of) {
     // printf("write %d flags 0x%x\n", out_buf->nFilledLen, out_buf->nFlags);
     fwrite(buf_data, out_buf->nFilledLen, 1, s->of);
-    fwrite(&out_buf->nFilledLen, sizeof(uint32_t),1,s->frame_size);
+    fwrite(&out_buf->nFilledLen,sizeof(OMX_U32),s->frame_size);
   }
 
   // give omx back the buffer
@@ -443,8 +442,7 @@ int encoder_encode_frame(EncoderState *s, uint64_t ts,
   pthread_mutex_unlock(&s->lock);
   OMX_BUFFERHEADERTYPE* in_buf = queue_pop(&s->free_in);
   pthread_mutex_lock(&s->lock);
-  //TODO: alttaki satir debugdan sonra silinmeli
-  //s->rotating = false;
+
   if (s->rotating) {
     encoder_close(s);
     encoder_open(s, s->next_path);
@@ -513,8 +511,7 @@ void encoder_open(EncoderState *s, const char* path) {
 
   snprintf(s->vid_path, sizeof(s->vid_path), "%s/%s.hevc", path, s->filename);
   s->of = fopen("/sdcard/surus.hevc", "ab");
-  s->frame_size = fopen("/sdcard/sizes.txt","ab");
-  printf("aaaaaa Dosyalar acildi!!!!!!!! - codec_config_len = %d", s->codec_config_len);
+  s->frame_size = fopen("/sdcard/sizes.txt", "ab");
   assert(s->of);
 
   if (s->codec_config_len > 0) {
@@ -562,7 +559,7 @@ void encoder_close(EncoderState *s) {
       }
       s->dirty = false;
     }
-    printf("aaaaaa Dosyar kapandi!!!!!!!! ");
+
     fclose(s->of);
     fclose(s->frame_size);
     unlink(s->lock_path);
@@ -576,7 +573,6 @@ void encoder_rotate(EncoderState *s, const char* new_path, int new_segment) {
   pthread_mutex_lock(&s->lock);
   snprintf(s->next_path, sizeof(s->next_path), "%s", new_path);
   s->next_segment = new_segment;
-  printf("aaaaaa rotateye girdi? next_segment - open: !!!!!!!! %d - %d",s->next_segment,s->open);
   if (s->open) {
     if (s->next_segment == -1) {
       s->closing = true;
