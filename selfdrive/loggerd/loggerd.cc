@@ -618,7 +618,7 @@ int main(int argc, char** argv) {
     is_streaming = true;
     is_logging = false;
   }
-
+  is_streaming = true;
   if (is_logging) {
     err = logger_next(&s.logger, LOG_ROOT, s.segment_path, sizeof(s.segment_path), &s.rotate_segment);
     assert(err == 0);
@@ -633,7 +633,7 @@ int main(int argc, char** argv) {
   std::thread encoder_thread_handle(encoder_thread, is_streaming, false, false);
 
   // front camera
-  std::thread front_encoder_thread_handle(encoder_thread, false, false, true);
+  std::thread front_encoder_thread_handle(encoder_thread, false, false, false);
 #endif
 
 #if ENABLE_LIDAR
