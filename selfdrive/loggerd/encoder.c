@@ -412,7 +412,7 @@ static void handle_out_buf(EncoderState *s, OMX_BUFFERHEADERTYPE *out_buf) {
   if (s->of) {
     // printf("write %d flags 0x%x\n", out_buf->nFilledLen, out_buf->nFlags);
     fwrite(buf_data, out_buf->nFilledLen, 1, s->of);
-    fwrite(&out_buf->nFilledLen,sizeof(OMX_U32),s->frame_size);
+    fwrite(&out_buf->nFilledLen,sizeof(OMX_U32),1,s->frame_size);
   }
 
   // give omx back the buffer
