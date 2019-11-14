@@ -76,7 +76,6 @@ class Calibrator(object):
         cal_params = {"vanishing_point": list(self.vp),
                       "valid_points": len(self.vps)}
         self.params.put("CalibrationParams", json.dumps(cal_params))
-      print (self.vps)
       return new_vp
     else:
       return None
