@@ -514,6 +514,7 @@ void encoder_open(EncoderState *s, const char* path) {
   snprintf(s->vid_path, sizeof(s->vid_path), "%s/%s.hevc", path, s->filename);
   s->of = fopen("/sdcard/surus.hevc", "wb");
   s->frame_size = fopen("/sdcard/sizes.txt","wb");
+  printf("aaaaaa Dosyalar acildi!!!!!!!! - codec_config_len = ", s->codec_config_len);
   assert(s->of);
 
   if (s->codec_config_len > 0) {
@@ -561,7 +562,7 @@ void encoder_close(EncoderState *s) {
       }
       s->dirty = false;
     }
-
+    printf("aaaaaa Dosyar kapandi!!!!!!!! ");
     fclose(s->of);
     fclose(s->frame_size);
     unlink(s->lock_path);
@@ -575,6 +576,7 @@ void encoder_rotate(EncoderState *s, const char* new_path, int new_segment) {
   pthread_mutex_lock(&s->lock);
   snprintf(s->next_path, sizeof(s->next_path), "%s", new_path);
   s->next_segment = new_segment;
+  printf("aaaaaa rotateye girdi? next_segment - open: !!!!!!!! %d - %d",s->next_segment,s->open);
   if (s->open) {
     if (s->next_segment == -1) {
       s->closing = true;

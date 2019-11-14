@@ -91,7 +91,7 @@ ModelData model_eval_frame(ModelState* s, cl_command_queue q,
   //sleep(1);
   //printf("%i \n",OUTPUT_SIZE);
   //printf("%i \n",MDN_GROUP_SIZE);
-  printf("*******Driving model nn executing****************************\n");
+  //printf("*******Driving model nn executing****************************\n");
   s->m->execute(net_input_buf);
 
   // net outputs
@@ -113,8 +113,8 @@ ModelData model_eval_frame(ModelState* s, cl_command_queue q,
   }
 
   model.path.std = softplus(net_outputs.path[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]);
-  printf("******* path.std: %f\n",softplus(net_outputs.path[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]));
-  printf("******* net_outputs.path[240]: %f\n",net_outputs.path[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]);
+  //printf("******* path.std: %f\n",softplus(net_outputs.path[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]));
+  //printf("******* net_outputs.path[240]: %f\n",net_outputs.path[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]);
   model.left_lane.std = softplus(net_outputs.left_lane[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]);
   model.right_lane.std = softplus(net_outputs.right_lane[MODEL_PATH_DISTANCE + MODEL_PATH_DISTANCE/4]);
 
@@ -137,15 +137,15 @@ ModelData model_eval_frame(ModelState* s, cl_command_queue q,
   for (int i=1; i<LEAD_MDN_N; i++) {
     if (net_outputs.lead[i*MDN_GROUP_SIZE + 8] > net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 8]) {
       mdn_max_idx = i;
-      printf("*******mdn_idx: %d\n",i);
+      //printf("*******mdn_idx: %d\n",i);
     }
   }
-  printf("********net_outputs.lead[%d]: %f\n",mdn_max_idx,net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 8]);
+  //printf("********net_outputs.lead[%d]: %f\n",mdn_max_idx,net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 8]);
   model.lead.prob = sigmoid(net_outputs.lead[LEAD_MDN_N*MDN_GROUP_SIZE]);
   model.lead.dist = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE] * max_dist;
   model.lead.std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS]) * max_dist;
   model.lead.rel_y = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 1];
-  printf("*******model.lead.rel_y: %f\n",model.lead.rel_y);
+  //printf("*******model.lead.rel_y: %f\n",model.lead.rel_y);
   model.lead.rel_y_std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS + 1]);
   model.lead.rel_v = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 2] * max_rel_vel;
   model.lead.rel_v_std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS + 2]) * max_rel_vel;
@@ -159,12 +159,12 @@ ModelData model_eval_frame(ModelState* s, cl_command_queue q,
       mdn_max_idx = i;
     }
   }
-  printf("********net_outputs.lead[%d]: %f\n",mdn_max_idx,net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 9]);
+  //printf("********net_outputs.lead[%d]: %f\n",mdn_max_idx,net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 9]);
   model.lead_future.prob = sigmoid(net_outputs.lead[LEAD_MDN_N*MDN_GROUP_SIZE + 1]);
   model.lead_future.dist = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE] * max_dist;
   model.lead_future.std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS]) * max_dist;
   model.lead_future.rel_y = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 1];
-  printf("*******model.lead.rel_y: %f\n",model.lead_future.rel_y);
+  //printf("*******model.lead.rel_y: %f\n",model.lead_future.rel_y);
   model.lead_future.rel_y_std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS + 1]);
   model.lead_future.rel_v = net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + 2] * max_rel_vel;
   model.lead_future.rel_v_std = softplus(net_outputs.lead[mdn_max_idx*MDN_GROUP_SIZE + MDN_VALS + 2]) * max_rel_vel;
