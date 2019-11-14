@@ -754,7 +754,7 @@ int main(int argc, char** argv) {
   s.cv.notify_all();
 
 #ifndef DISABLE_ENCODER
-  front_encoder_thread_handle.join();
+  //front_encoder_thread_handle.join();
   encoder_thread_handle.join();
   LOGW("encoder joined");
 #endif
