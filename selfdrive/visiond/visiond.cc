@@ -1277,7 +1277,7 @@ void* live_thread(void *arg) {
       camera_frame_from_ground.col(1) = camera_frame_from_road_frame.col(1);
       camera_frame_from_ground.col(2) = camera_frame_from_road_frame.col(3);
 
-      auto warp_matrix = camera_frame_from_ground * ground_from_medmodel_frame;,
+      auto warp_matrix = camera_frame_from_ground * ground_from_medmodel_frame;
 
       for (int i=0; i<3*3; i++) {
         s->cur_transform.v[i] = warp_matrix(i / 3, i % 3);
