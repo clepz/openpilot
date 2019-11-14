@@ -512,8 +512,8 @@ void encoder_open(EncoderState *s, const char* path) {
   pthread_mutex_lock(&s->lock);
 
   snprintf(s->vid_path, sizeof(s->vid_path), "%s/%s.hevc", path, s->filename);
-  s->of = fopen("/sdcard/surus.hevc", "wb");
-  s->frame_size = fopen("/sdcard/sizes.txt","wb");
+  s->of = fopen("/sdcard/surus.hevc", "ab");
+  s->frame_size = fopen("/sdcard/sizes.txt","ab");
   printf("aaaaaa Dosyalar acildi!!!!!!!! - codec_config_len = %d", s->codec_config_len);
   assert(s->of);
 
