@@ -510,6 +510,7 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
   prof = Profiler(False)  # off by default
 
   while True:
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     start_time = sec_since_boot()
     prof.checkpoint("Ratekeeper", ignore=True)
 
@@ -560,7 +561,10 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
     CC, events_prev = data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk, AM, driver_status, LaC,
                                 LoC, read_only, start_time, v_acc, a_acc, lac_log, events_prev)
     prof.checkpoint("Sent")
-
+    print("**********************************************************")
+    print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
+    print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
+    print("**********************************************************")
     rk.monitor_time()
     prof.display()
 
