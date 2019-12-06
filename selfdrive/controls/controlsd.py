@@ -413,6 +413,9 @@ def data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk
   cc_send.carControl = CC
   pm.send('carControl', cc_send)
 
+
+  print(actuators)
+
   return CC, events_bytes
 
 
