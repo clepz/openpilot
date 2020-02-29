@@ -119,6 +119,16 @@ class CarInterface(object):
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.05]]
       ret.lateralTuning.pid.kf = 0.00003   # full torque for 20 deg at 80mph means 0.00007818594
 
+    elif candidate == CAR.COROLLAH_TSS2:
+      stop_and_go = True
+      ret.safetyParam = 73
+      ret.wheelbase = 2.70002
+      ret.steerRatio = 13.9
+      tire_stiffness_factor = 0.444  # not optimized yet
+      ret.mass = 3050. * CV.LB_TO_KG + STD_CARGO_KG
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.1]]
+      ret.lateralTuning.pid.kf = 0.00007818594
+
     elif candidate == CAR.LEXUS_RXH:
       stop_and_go = True
       ret.safetyParam = 73
