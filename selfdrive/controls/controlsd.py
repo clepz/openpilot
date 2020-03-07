@@ -282,10 +282,10 @@ def state_control(frame, rcv_frame, plan, path_plan, CS, CP, state, events, v_cr
     AM.add(frame, str(e) + "Permanent", enabled, extra_text_1=extra_text_1, extra_text_2=extra_text_2)
 
   AM.process_alerts(frame)
-  print("**********************************************************")
-  print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
-  print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
-  print("**********************************************************")
+  #print("**********************************************************")
+  #print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
+  #print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
+  #print("**********************************************************")
   return actuators, v_cruise_kph, driver_status, v_acc_sol, a_acc_sol, lac_log
 
 
@@ -293,10 +293,10 @@ def data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk
               driver_status, LaC, LoC, read_only, start_time, v_acc, a_acc, lac_log, events_prev):
   """Send actuators and hud commands to the car, send controlsstate and MPC logging"""
 
-  print("**********************************************************")
-  print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
-  print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
-  print("**********************************************************")
+  #print("**********************************************************")
+  #print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
+  #print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
+  #print("**********************************************************")
   CC = car.CarControl.new_message()
   CC.enabled = isEnabled(state)
   CC.actuators = actuators
@@ -510,7 +510,7 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
   prof = Profiler(False)  # off by default
 
   while True:
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    #print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     start_time = sec_since_boot()
     prof.checkpoint("Ratekeeper", ignore=True)
 
@@ -561,10 +561,10 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
     CC, events_prev = data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk, AM, driver_status, LaC,
                                 LoC, read_only, start_time, v_acc, a_acc, lac_log, events_prev)
     prof.checkpoint("Sent")
-    print("**********************************************************")
-    print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
-    print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
-    print("**********************************************************")
+    #print("**********************************************************")
+    #print('brake= {} \ngas= {}\n'.format(actuators.brake, actuators.gas))
+    #print('steer= {} \nsteerAngle= {}\n'.format(actuators.steer, actuators.steerAngle))
+    #print("**********************************************************")
     rk.monitor_time()
     prof.display()
 
