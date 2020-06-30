@@ -391,10 +391,10 @@ void can_send(void *s) {
   uint32_t *send = (uint32_t*)malloc(msg_count*0x10);
   memset(send, 0, msg_count*0x10);
 
-  printf("---------------Giden Adresler!--------------------\n");
+  #printf("---------------Giden Adresler!--------------------\n");
   for (int i = 0; i < msg_count; i++) {
     auto cmsg = event.getSendcan()[i];
-    printf("%d\n",cmsg.getAddress());
+    //printf("%d\n",cmsg.getAddress());
     if (cmsg.getAddress() >= 0x800) {
       // extended
       send[i*4] = (cmsg.getAddress() << 3) | 5;

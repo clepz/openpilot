@@ -400,7 +400,7 @@ void can_send(void *s) {
       send[i*4] = (cmsg.getAddress() << 3) | 5;
     } else {
       // normal
-      send[i*4] = (cmsg.getAddress() << 21) | 1;
+    send[i*4] = (cmsg.getAddress() << 21) | 1;
     }
     assert(cmsg.getDat().size() <= 8);
     send[i*4+1] = cmsg.getDat().size() | (cmsg.getSrc() << 4);
