@@ -391,8 +391,10 @@ void can_send(void *s) {
   uint32_t *send = (uint32_t*)malloc(msg_count*0x10);
   memset(send, 0, msg_count*0x10);
 
+  printf("---------------Giden Adresler!--------------------\n");
   for (int i = 0; i < msg_count; i++) {
     auto cmsg = event.getSendcan()[i];
+    printf("%d\n",cmsg.getAddress());
     if (cmsg.getAddress() >= 0x800) {
       // extended
       send[i*4] = (cmsg.getAddress() << 3) | 5;
@@ -404,6 +406,7 @@ void can_send(void *s) {
     send[i*4+1] = cmsg.getDat().size() | (cmsg.getSrc() << 4);
     memcpy(&send[i*4+2], cmsg.getDat().begin(), cmsg.getDat().size());
   }
+  printf("-----------------------------------\n");
 
   // release msg
   zmq_msg_close(&msg);
